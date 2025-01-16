@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Currency Converter</title>
+  <style>
+    body {
+      font-family: Georgia, serif;
+      text-align: center;
+      background-color: #155E95;
+      color: white;
+      margin: 0;
+      padding: 20px;
+    }
+    .container {
+      margin-top: 30px;
+    }
+    .icon {
+      width: 100px;
+      margin-bottom: 15px;
+    }
+    .input-box-wrapper {
+      position: relative;
+      display: inline-block;
+    }
+    .peso-symbol {
+      position: absolute;
+      left: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 16px;
+      color: white;
+    }
+    .input-box {
+      font-size: 16px;
+      background: black;
+      color: white;
+      border: none;
+      padding: 10px 10px 10px 25px;
+      border-radius: 5px;
+      width: 80px;
+      margin: 5px auto;
+    }
+    .sub-text {
+      font-family: serif;
+      font-size: 16px;
+      margin-top: 5px;
+    }
+    .result {
+      font-size: 19px;
+      margin: 20px auto;
+      background: black;
+      padding: 10px;
+      border-radius: 5px;
+      width: fit-content;
+    }
+    .button {
+      padding: 8px 15px;
+      font-size: 14px;
+      margin: 5px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .dollar-btn {
+      background-color: blue;
+      color: white;
+    }
+    .won-btn {
+      background-color: orange;
+      color: white;
+    }
+    .refresh-btn {
+      background-color: green;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <img src="https://i.pinimg.com/736x/40/09/d3/4009d3feda72d03ec4343f6d2f54d3cc.jpg" alt="Money Icon" class="icon" width="100">
+    <h2>Click the buttons below to convert</h2>
+    <div class="input-box-wrapper">
+      <span class="peso-symbol">₱</span>
+      <input class="input-box" id="pesoInput" type="number" value="100">
+    </div>
+    <div class="sub-text">pesos to other currencies</div>
+    <div class="result" id="result">0.00</div>
+    <button class="button dollar-btn" onclick="convertCurrency('Dollar')">Dollar</button>
+    <button class="button won-btn" onclick="convertCurrency('Won')">Won</button>
+    <button class="button refresh-btn" onclick="resetFields()">Refresh</button>
+  </div>
+
+  <script>
+    function convertCurrency(currency) {
+      const pesoValue = parseFloat(document.getElementById("pesoInput").value) || 0;
+      let convertedValue = 0;
+      let symbol = "";
+
+      if (currency === "Dollar") {
+        convertedValue = pesoValue * 0.5927;
+        symbol = "$";
+      } else if (currency === "Won") {
+        convertedValue = pesoValue * 13.4; 
+        symbol = "₩";
+      }
+
+      document.getElementById("result").innerText = `${symbol}${convertedValue.toFixed(2)}`;
+    }
+
+    function resetFields() {
+      document.getElementById("pesoInput").value = 100;
+      document.getElementById("result").innerText = "0.00";
+    }
+  </script>
+</body>
+</html>
